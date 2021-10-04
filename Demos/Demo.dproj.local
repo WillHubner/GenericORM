@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/07/27 14:09:15.000.593,=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/07/27 14:17:06.000.513,=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/07/27 15:18:21.000.587,=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/08/13 13:21:38.000.964,=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/09/29 16:01:42.000.067,=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/09/29 16:02:05.000.036,=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2021/09/29 16:04:06.000.803,C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\BrProjetos\GenericDAO\Demos\Demo.dproj</Transaction>
+    <Transaction>2021/09/29 16:07:29.000.658,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:17:12.000.409,C:\BrProjetos\GenericDAO\Model\Connection\GenericQuery.Model.Connection.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:19:46.000.218,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:20:03.000.544,C:\BrProjetos\GenericDAO\Demos\Model.Classes.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:24:17.000.802,=C:\BrProjetos\GenericDAO\Controller\Controller.DataSetToJSON.Util.pas</Transaction>
+    <Transaction>2021/09/29 16:24:17.000.096,=C:\BrProjetos\GenericDAO\Controller\Controller.DataSetToJSON.pas</Transaction>
+    <Transaction>2021/09/29 16:24:23.000.291,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:34:41.000.944,C:\BrProjetos\GenericDAO\GenericDAO.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:37:31.000.157,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:38:31.000.931,C:\BrProjetos\GenericDAO\GenericDAOInterface.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:45:31.000.132,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:46:01.000.778,C:\BrProjetos\GenericDAO\GenericDAOAttributes.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:48:46.000.760,C:\BrProjetos\GenericDAO\Model\Connection\GenericDAOConnection.pas=C:\BrProjetos\GenericDAO\Model\Connection\GenericQuery.Model.Connection.pas</Transaction>
+    <Transaction>2021/09/29 16:49:19.000.957,C:\BrProjetos\GenericDAO\GenericDAOConnection.pas=C:\BrProjetos\GenericDAO\Model\Connection\GenericDAOConnection.pas</Transaction>
+    <Transaction>2021/09/29 16:49:47.000.272,C:\BrProjetos\GenericDAO\GenericDataSetToJSON.pas=C:\BrProjetos\GenericDAO\Controller\Controller.DataSetToJSON.pas</Transaction>
+    <Transaction>2021/09/29 16:50:04.000.063,C:\BrProjetos\GenericDAO\GenericDataSetToJSONUtil.pas=C:\BrProjetos\GenericDAO\Controller\Controller.DataSetToJSON.Util.pas</Transaction>
+    <Transaction>2021/09/29 16:50:25.000.489,C:\BrProjetos\GenericDAO\GenericConnection.pas=C:\BrProjetos\GenericDAO\GenericDAOConnection.pas</Transaction>
+    <Transaction>2021/09/29 16:50:29.000.298,C:\BrProjetos\GenericDAO\GenericAttributes.pas=C:\BrProjetos\GenericDAO\GenericDAOAttributes.pas</Transaction>
+    <Transaction>2021/09/29 16:52:59.000.290,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:53:15.000.085,C:\BrProjetos\GenericDAO\GenericSQL.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 16:54:16.000.001,C:\BrProjetos\GenericDAO\GenericInterfaces.pas=C:\BrProjetos\GenericDAO\GenericDAOInterface.pas</Transaction>
+    <Transaction>2021/09/29 17:00:42.000.293,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 17:00:59.000.990,C:\BrProjetos\GenericDAO\GenericRTTI.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 17:10:40.000.091,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 17:11:04.000.138,C:\BrProjetos\GenericDAO\GenericRTTIHelper.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/29 17:26:06.000.075,=C:\BrProjetos\GenericDAO\GenericQuery.pas</Transaction>
+    <Transaction>2021/09/30 08:44:21.000.064,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/30 08:44:42.000.884,C:\BrProjetos\GenericDAO\Demos\Model.Connection.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/30 10:24:53.000.637,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/30 10:25:15.000.796,C:\BrProjetos\GenericDAO\GenericTypes.pas=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/30 15:02:25.000.375,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/09/30 15:02:45.000.270,C:\BrProjetos\GenericDAO\Demos\Unit1.pas=C:\BrProjetos\GenericDAO\GenericFilterDAO.pas</Transaction>
+    <Transaction>2021/09/30 15:06:33.000.320,C:\BrProjetos\GenericDAO\GenericFilterDAO.pas=</Transaction>
+    <Transaction>2021/09/30 15:17:04.000.839,=C:\BrProjetos\GenericDAO\GenericFilterDAO.pas</Transaction>
+    <Transaction>2021/09/30 15:18:06.000.427,C:\BrProjetos\GenericDAO\GenericFilterDAO.pas=</Transaction>
+    <Transaction>2021/10/01 13:52:52.000.986,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/10/01 13:53:19.000.001,C:\BrProjetos\GenericDAO\Demos\Unit1.pas=C:\BrProjetos\GenericDAO\GenericPaginate.pas</Transaction>
+    <Transaction>2021/10/01 15:45:28.000.847,=C:\BrProjetos\GenericDAO\Demos\Unit1.pas</Transaction>
+    <Transaction>2021/10/01 15:45:44.000.873,C:\BrProjetos\GenericDAO\Demos\Unit1.pas=C:\BrProjetos\GenericDAO\Demos\Routes.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\GenericDAO"/>
+    <File Path="..\GenericAttributes.pas"/>
+    <File Path="..\GenericConnection.pas"/>
+    <File Path="..\GenericDAO.pas"/>
+    <File Path="..\GenericDataSetToJSON.pas"/>
+    <File Path="..\GenericDataSetToJSONUtil.pas"/>
+    <File Path="..\GenericInterfaces.pas"/>
+    <File Path="..\GenericPaginate.pas"/>
+    <File Path="..\GenericQuery.pas"/>
+    <File Path="..\GenericRTTI.pas"/>
+    <File Path="..\GenericRTTIHelper.pas"/>
+    <File Path="..\GenericSQL.pas"/>
+    <File Path="..\GenericTypes.pas"/>
+    <File Path="Model.Classes.pas"/>
+    <File Path="Model.Connection.pas"/>
+    <File Path="Routes.pas"/>
+  </ProjectSortOrder>
+</BorlandProject>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2021/10/04 07:41:15.325,=rtl.dcp</Transaction>
+    <Transaction>2021/10/04 07:42:01.274,C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\GenericORM.dproj=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
+    <Transaction>2021/10/04 07:42:13.746,=C:\BrProjetos\GenericDAO\GenericAttributes.pas</Transaction>
+    <Transaction>2021/10/04 07:42:13.948,=C:\BrProjetos\GenericDAO\GenericConnection.pas</Transaction>
+    <Transaction>2021/10/04 07:42:13.977,=C:\BrProjetos\GenericDAO\GenericDAO.pas</Transaction>
+    <Transaction>2021/10/04 07:42:14.028,=C:\BrProjetos\GenericDAO\GenericDataSetToJSON.pas</Transaction>
+    <Transaction>2021/10/04 07:42:14.081,=C:\BrProjetos\GenericDAO\GenericDataSetToJSONUtil.pas</Transaction>
+    <Transaction>2021/10/04 07:42:14.112,=C:\BrProjetos\GenericDAO\GenericInterfaces.pas</Transaction>
+    <Transaction>2021/10/04 07:42:14.141,=C:\BrProjetos\GenericDAO\GenericPaginate.pas</Transaction>
+    <Transaction>2021/10/04 07:42:14.199,=C:\BrProjetos\GenericDAO\GenericQuery.pas</Transaction>
+    <Transaction>2021/10/04 07:42:15.533,=C:\BrProjetos\GenericDAO\GenericRTTI.pas</Transaction>
+    <Transaction>2021/10/04 07:42:15.573,=C:\BrProjetos\GenericDAO\GenericRTTIHelper.pas</Transaction>
+    <Transaction>2021/10/04 07:42:15.613,=C:\BrProjetos\GenericDAO\GenericSQL.pas</Transaction>
+    <Transaction>2021/10/04 07:42:15.662,=C:\BrProjetos\GenericDAO\GenericTypes.pas</Transaction>
+    <Transaction>2021/10/04 07:42:26.290,C:\BrProjetos\GenericDAO\GenericORM.dproj=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\GenericORM.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

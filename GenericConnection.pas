@@ -23,7 +23,6 @@ uses
   Firedac.Phys.FBDef,
   Firedac.Phys.MySQLDef,
   Firedac.Phys.MySQL,
-  FireDAC.VCLUI.Wait,
   FireDAC.Comp.UI,
   GenericTypes;
 

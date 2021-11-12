@@ -9,9 +9,7 @@ uses
 
   Data.DB,
   TypInfo,
-  Vcl.Forms,
-  VCL.StdCtrls,
-  Vcl.ExtCtrls,
+
   System.RTTI,
   System.Classes,
   System.SysUtils,

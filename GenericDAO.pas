@@ -29,6 +29,7 @@ type
     function AddFilter(const aField : String; const aValue : Variant) : iGenericDAO<T>;
 
     function Open : TJSONValue; overload;
+    function Open(const aKey : String; const aValue : Variant) : TJSONValue; overload;
     function Open(const vID : Integer) : TJSONObject; overload;
     function Insert(aInstance : T) : TJSONObject; overload;
     function Insert(aInstance : TJSONObject) : TJSONObject; overload;
@@ -102,6 +103,112 @@ var
 begin
   TGenericSQL<T>.New.SelectID(vSQL, vPK);
   Result := FQuery.SQL(vSQL).Param(vPK, vID.ToString).ToJSONObject;
+end;
+
+function TGenericDAO<T>.Open(const aKey : String;
+  const aValue: Variant): TJSONValue;
+var
+  vSQL, vSQLCount, vKey : String;
+  SQL : iGenericSQL<T>;
+
+  vTotal : Integer;
+  vPages : Double;
+
+  vResult : TJSONArray;
+begin
+  SQL := TGenericSQL<T>.New;
+
+  if not (LLimit = 0) then
+    begin
+      SQL.Paginate(LLimit, LPage);
+
+      Result := TJSONObject.Create;
+    end;
+
+  if not (Length(FParams.ToArray) = 0) then
+    begin
+      SQL.WhereSQL(aKey);
+
+      for vKey in FParams.Keys.ToArray do
+        SQL.Where(vKey);
+
+      SQL.Select(vSQL);
+
+      FQuery.SQL(vSQL);
+
+      FQuery.Param(aKey, aValue);
+
+      for vKey in FParams.Keys.ToArray do
+        FQuery.Param(SQL.FieldClassToFieldSQL(vKey), Fparams.Items[vKey]);
+
+      vResult := FQuery.ToJSONArray;
+
+      if not (LLimit = 0) then
+        begin
+          TJSONObject(Result).AddPair('docs', vResult);
+
+          SQL.Count(vSQLCount);
+
+          FQuery.Clear().SQL(vSQLCount);
+
+          for vKey in FParams.Keys.ToArray do
+            FQuery.Param(SQL.FieldClassToFieldSQL(vKey), Fparams.Items[vKey]);
+
+          vTotal := FQuery.AsInteger('N');
+
+          vPages := vTotal / LLimit;
+
+          if not ((vPages - Trunc(vPages)) = 0) then
+            vPages := Trunc(vPages) + 1;
+
+          TJSONObject(Result).AddPair('limit', TJSONNumber.Create(LLimit));
+          TJSONObject(Result).AddPair('page', TJSONNumber.Create(LPage));
+          TJSONObject(Result).AddPair('pages', TJSONNumber.Create(vPages));
+          TJSONObject(Result).AddPair('total', TJSONNumber.Create(vTotal));
+        end
+      else
+        Result := FQuery.ToJSONArray;
+    end
+  else
+    begin
+      SQL.WhereSQL(aKey);
+
+      SQL.Select(vSQL);
+
+      FQuery.SQL(vSQL);
+
+      FQuery.Param(aKey, aValue);
+
+      vResult := FQuery.ToJSONArray;
+
+      if not (LLimit = 0) then
+        begin
+          TJSONObject(Result).AddPair('docs', vResult);
+
+          SQL.Count(vSQLCount);
+
+          FQuery.Clear();
+          FQuery.SQL(vSQLCount);
+
+          FQuery.Param(aKey, aValue);
+
+          for vKey in FParams.Keys.ToArray do
+            FQuery.Param(SQL.FieldClassToFieldSQL(vKey), Fparams.Items[vKey]);
+
+          vTotal := FQuery.AsInteger('N');
+          vPages := vTotal / LLimit;
+
+          if not ((vPages - Trunc(vPages)) = 0) then
+            vPages := Trunc(vPages) + 1;
+
+          TJSONObject(Result).AddPair('limit', TJSONNumber.Create(LLimit));
+          TJSONObject(Result).AddPair('page', TJSONNumber.Create(LPage));
+          TJSONObject(Result).AddPair('pages', TJSONNumber.Create(vPages));
+          TJSONObject(Result).AddPair('total', TJSONNumber.Create(vTotal));
+        end
+      else
+        Result := FQuery.ToJSONArray;
+    end;
 end;
 
 function TGenericDAO<T>.Update(aInstance: TJSONObject): TJSONObject;

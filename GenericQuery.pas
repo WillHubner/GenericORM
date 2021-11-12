@@ -5,6 +5,8 @@ interface
 uses
   Data.DB,
 
+  Variants,
+
   System.JSON,
   System.Classes,
   System.Generics.Collections,
@@ -122,8 +124,11 @@ end;
 function TGenericQuery<T>.FillParams(aInstance: T): iGenericQuery<T>;
 var
   Key : String;
+  Value : Variant;
   DictionaryFields : TDictionary<String, Variant>;
 begin
+  Result := Self;
+
   DictionaryFields := TDictionary<String, Variant>.Create;
 
   TGenericRTTI<T>.New(aInstance).ListFields(DictionaryFields);
@@ -132,7 +137,9 @@ begin
 
   try
     for Key in DictionaryFields.Keys do
-      Self.Param(Key, DictionaryFields.Items[Key]);
+      if DictionaryFields.TryGetValue(Key, Value) then
+        if not VarIsNull(Value) then
+          Self.Param(Key, Value);
 
   finally
     FreeAndNil(DictionaryFields);
@@ -155,7 +162,29 @@ begin
   Result := Self;
 
   if FQuery.Params.FindParam(aKey) <> nil then
-    FQuery.ParamByName(aKey).AsString := aValue;
+    begin
+      if not (aValue = '') then
+        begin
+          case FQuery.ParamByName(aKey).DataType of
+            ftString, ftWideString:
+              FQuery.ParamByName(aKey).AsString := aValue;
+
+            ftDate, ftTime, ftDateTime :
+              FQuery.ParamByName(aKey).Value := StrToDateTime(aValue);
+
+            ftLargeint, ftSmallint, ftInteger, ftWord:
+              FQuery.ParamByName(aKey).Value := StrToInt(aValue);
+
+            ftFloat, ftCurrency, ftBCD, ftFMTBcd :
+              FQuery.ParamByName(aKey).Value := StrToFloat(aValue);
+
+            else
+              FQuery.ParamByName(aKey).AsString := aValue;
+          end;
+        end;
+
+//      FQuery.ParamByName(aKey).Value := aValue;
+    end;
 end;
 
 function TGenericQuery<T>.ToJSONArray: TJSONArray;

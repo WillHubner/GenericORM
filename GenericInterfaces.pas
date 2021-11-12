@@ -11,6 +11,7 @@ type
     ['{15466469-AE9B-41AE-A05F-7443BB035E6B}']
     function Open : TJSONValue; overload;
     function Open(const vID : Integer) : TJSONObject; overload;
+    function Open(const aKey : String; const aValue : Variant) : TJSONValue; overload;
     function Insert(aInstance : T) : TJSONObject; overload;
     function Insert(aInstance : TJSONObject) : TJSONObject; overload;
     function Update(aInstance : T) : TJSONObject; overload;
@@ -29,6 +30,7 @@ type
     function LastRecord(var aSQL : String) : iGenericSQL<T>;
     function Delete(var aSQL : String) : iGenericSQL<T>;
     function Where(const aKey : String) : iGenericSQL<T>;
+    function WhereSQL(const aKey : String) : iGenericSQL<T>;
     function FieldClassToFieldSQL(const aKey : String) : String;
     function Paginate(const aLimit : Integer; const aPage : Integer) : iGenericSQL<T>;
   end;

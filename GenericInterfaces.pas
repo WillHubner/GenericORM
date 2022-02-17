@@ -18,6 +18,7 @@ type
     function Update(aInstance : TJSONObject) : TJSONObject; overload;
     function Delete(const vID : Integer) : Boolean;
     function AddFilter(const aField : String; const aValue : Variant) : iGenericDAO<T>;
+    function AddIntegerFilter(const aField : String; const aValue : Variant) : iGenericDAO<T>;
   end;
 
   iGenericSQL<T> = interface
@@ -31,6 +32,7 @@ type
     function Delete(var aSQL : String) : iGenericSQL<T>;
     function Where(const aKey : String) : iGenericSQL<T>;
     function WhereSQL(const aKey : String) : iGenericSQL<T>;
+    function WhereInteger(const aKey : String) : iGenericSQL<T>;
     function FieldClassToFieldSQL(const aKey : String) : String;
     function Paginate(const aLimit : Integer; const aPage : Integer) : iGenericSQL<T>;
   end;

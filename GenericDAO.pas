@@ -20,6 +20,7 @@ type
   private
     FQuery : iGenericQuery<T>;
     FParams : TDictionary<String, Variant>;
+    FIntegerParams : TDictionary<String, Variant>;
   public
     constructor Create;
     destructor Destroy; override;
@@ -27,6 +28,7 @@ type
     class function New : iGenericDAO<T>;
 
     function AddFilter(const aField : String; const aValue : Variant) : iGenericDAO<T>;
+    function AddIntegerFilter(const aField : String; const aValue : Variant) : iGenericDAO<T>;
 
     function Open : TJSONValue; overload;
     function Open(const aKey : String; const aValue : Variant) : TJSONValue; overload;
@@ -51,10 +53,18 @@ begin
   FParams.Add(aField, aValue);
 end;
 
+function TGenericDAO<T>.AddIntegerFilter(const aField: String;
+  const aValue: Variant): iGenericDAO<T>;
+begin
+  Result := Self;
+  FIntegerParams.Add(aField, aValue);
+end;
+
 constructor TGenericDAO<T>.Create;
 begin
   FQuery := TGenericQuery<T>.New;
   FParams := TDictionary<String, Variant>.Create;
+  FIntegerParams := TDictionary<String, Variant>.Create;
 end;
 
 function TGenericDAO<T>.Delete(const vID: Integer): Boolean;
@@ -69,6 +79,7 @@ end;
 destructor TGenericDAO<T>.Destroy;
 begin
   FParams.Free;
+  FIntegerParams.Free;
   inherited;
 end;
 
@@ -257,17 +268,27 @@ begin
       Result := TJSONObject.Create;
     end;
 
-  if not (Length(FParams.ToArray) = 0) then
+  if ((not (Length(FParams.ToArray) = 0)) or (not (Length(FIntegerParams.ToArray) = 0))) then
     begin
       for vKey in FParams.Keys.ToArray do
-        SQL.Where(vKey);
+        if not (vKey = '') then
+          SQL.Where(vKey);
+
+      for vKey in FIntegerParams.Keys.ToArray do
+        if not (vKey = '') then
+          SQL.WhereInteger(vKey);
 
       SQL.Select(vSQL);
 
       FQuery.SQL(vSQL);
 
       for vKey in FParams.Keys.ToArray do
-        FQuery.Param(SQL.FieldClassToFieldSQL(vKey), Fparams.Items[vKey]);
+        if not (vKey = '') then
+          FQuery.Param(SQL.FieldClassToFieldSQL(vKey), Fparams.Items[vKey]);
+
+      for vKey in FIntegerParams.Keys.ToArray do
+        if not (vKey = '') then
+          FQuery.Param(SQL.FieldClassToFieldSQL(vKey), FIntegerParams.Items[vKey]);
 
       vResult := FQuery.ToJSONArray;
 
@@ -280,7 +301,12 @@ begin
           FQuery.Clear().SQL(vSQLCount);
 
           for vKey in FParams.Keys.ToArray do
-            FQuery.Param(SQL.FieldClassToFieldSQL(vKey), Fparams.Items[vKey]);
+            if not (vKey = '') then
+              FQuery.Param(SQL.FieldClassToFieldSQL(vKey), Fparams.Items[vKey]);
+
+          for vKey in FIntegerParams.Keys.ToArray do
+            if not (vKey = '') then
+              FQuery.Param(SQL.FieldClassToFieldSQL(vKey), FIntegerParams.Items[vKey]);
 
           vTotal := FQuery.AsInteger('N');
 

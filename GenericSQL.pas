@@ -35,6 +35,7 @@ type
     function Delete(var aSQL : String) : iGenericSQL<T>;
     function Where(const aKey : String) : iGenericSQL<T>;
     function WhereSQL(const aKey : String) : iGenericSQL<T>;
+    function WhereInteger(const aKey : String) : iGenericSQL<T>;
     function LastRecord(var aSQL : String) : iGenericSQL<T>;
     function FieldClassToFieldSQL(const aKey : String) : String;
   end;
@@ -242,6 +243,23 @@ begin
     FWhere := FWhere + ' AND (UPPER('+aField+') LIKE '+QuotedStr('%')+'||UPPER(:'+aField+')||'+QuotedStr('%')+')'
   else
     FWhere := FWhere + ' WHERE (UPPER('+aField+') LIKE '+QuotedStr('%')+'||UPPER(:'+aField+')||'+QuotedStr('%')+')';
+end;
+
+function TGenericSQL<T>.WhereInteger(const aKey: String): iGenericSQL<T>;
+var
+  aField : String;
+begin
+  Result := Self;
+
+  if Length(DictionaryFields.ToArray) = 0 then
+    TGenericRTTI<T>.DictionaryClassField(DictionaryFields);
+
+  aField := DictionaryFields.Items[aKey];
+
+  if Pos('WHERE', FWhere) > 0 then
+    FWhere := FWhere + ' AND ('+aField+' = :'+aField+')'
+  else
+    FWhere := FWhere + ' WHERE ('+aField+' = :'+aField+')';
 end;
 
 function TGenericSQL<T>.WhereSQL(const aKey: String): iGenericSQL<T>;

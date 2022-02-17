@@ -66,6 +66,7 @@ begin
         FConnList.Items[IndexConn].Params.Password := 'masterkey';
         FConnList.Items[IndexConn].Params.Add('Server='+FServer);
         FConnList.Items[IndexConn].Params.Add('Protocol=TCPIP');
+        FConnList.Items[IndexConn].Params.Add('CharacterSet=UTF8');
       end;
 
     SQLite :

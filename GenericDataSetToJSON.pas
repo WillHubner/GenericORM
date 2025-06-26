@@ -82,7 +82,6 @@ var
   ms: TMemoryStream;
   ss: TStringStream;
   DictionaryFields : TDictionary<String, String>;
-  P : TParams;
 begin
   Result := TJSONObject.Create;
 

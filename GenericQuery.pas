@@ -16,6 +16,7 @@ uses
   GenericDataSetToJSON,
   GenericDataSetToJSONUtil,
   GenericRTTI,
+  GenericTypes,
 
   FireDAC.Comp.Client,
   FireDAC.Stan.Param;
@@ -39,6 +40,7 @@ type
 
     function Param(aKey : String; aValue : String) : iGenericQuery<T>; overload;
     function Param(aValue : Variant) : iGenericQuery<T>; overload;
+    function Param(aKey : String; aValue : String; aDataType : TTypeKind) : iGenericQuery<T>; overload;
 
     function Execute : Boolean;
     function ToJSONArray : TJSONArray;
@@ -125,22 +127,44 @@ function TGenericQuery<T>.FillParams(aInstance: T): iGenericQuery<T>;
 var
   Key : String;
   Value : Variant;
+  ClassType : TTypeKind;
   DictionaryFields : TDictionary<String, Variant>;
+  DictionaryFieldsClass : TDictionary<String, TTypeKind>;
 begin
   Result := Self;
 
   DictionaryFields := TDictionary<String, Variant>.Create;
 
-  TGenericRTTI<T>.New(aInstance).ListFields(DictionaryFields);
-
   FQuery.Prepare;
 
-  try
-    for Key in DictionaryFields.Keys do
-      if DictionaryFields.TryGetValue(Key, Value) then
-        if not VarIsNull(Value) then
-          Self.Param(Key, Value);
+  TGenericRTTI<T>.New(aInstance).ListFields(DictionaryFields);
 
+  try
+    case GenericConnection.FTypeConnection of
+      Firebird, SQLite:
+      begin
+        for Key in DictionaryFields.Keys do
+          if DictionaryFields.TryGetValue(Key, Value) then
+            if not VarIsNull(Value) then
+              Self.Param(Key, Value);
+      end;
+
+      MySQL:
+      begin
+        DictionaryFieldsClass := TDictionary<String, TTypeKind>.Create;
+
+        try
+          TGenericRTTI<T>.DictionaryClassType(DictionaryFieldsClass);
+
+          for Key in DictionaryFields.Keys do
+            if DictionaryFields.TryGetValue(Key, Value) then
+              if DictionaryFieldsClass.TryGetValue(Key, ClassType) then
+                Self.Param(Key, Value, ClassType);
+        finally
+          DictionaryFieldsClass.Free;
+        end;
+      end;
+    end;
   finally
     FreeAndNil(DictionaryFields);
   end;
@@ -149,6 +173,36 @@ end;
 class function TGenericQuery<T>.New: iGenericQuery<T>;
 begin
   Result := Self.Create;
+end;
+
+function TGenericQuery<T>.Param(aKey, aValue: String;
+  aDataType: TTypeKind): iGenericQuery<T>;
+begin
+  Result := Self;
+
+  if FQuery.Params.FindParam(aKey) <> nil then
+    begin
+      case aDataType of
+        tkString,
+        tkChar,
+        tkWChar,
+        tkLString,
+        tkWString,
+        tkUString:
+        FQuery.ParamByName(aKey).AsString := aValue;
+
+        tkInteger,
+        tkInt64: FQuery.ParamByName(aKey).Value := StrToInt(aValue);
+
+        tkFloat: FQuery.ParamByName(aKey).Value := StrToFloat(aValue);
+
+        else
+        FQuery.ParamByName(aKey).AsString := aValue;
+      end;
+
+      if (aValue = '') then
+        FQuery.ParamByName(aKey).Clear;
+    end;
 end;
 
 function TGenericQuery<T>.Param(aValue: Variant): iGenericQuery<T>;

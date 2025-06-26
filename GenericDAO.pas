@@ -69,7 +69,7 @@ end;
 
 function TGenericDAO<T>.Delete(const vID: Integer): Boolean;
 var
-  vSQL, vPK : String;
+  vSQL : String;
 begin
   TGenericSQL<T>.New.Delete(vSQL);
 
@@ -127,6 +127,8 @@ var
 
   vResult : TJSONArray;
 begin
+  Result := nil;
+
   SQL := TGenericSQL<T>.New;
 
   if not (LLimit = 0) then
@@ -259,6 +261,8 @@ var
 
   vResult : TJSONArray;
 begin
+  Result := nil;
+
   SQL := TGenericSQL<T>.New;
 
   if not (LLimit = 0) then

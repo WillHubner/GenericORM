@@ -28,6 +28,7 @@ type
     class function New(aInstance : T) : iGenericRTTI<T>;
     class procedure DictionaryFieldClass(var aDictionary : TDictionary<string, string>);
     class procedure DictionaryClassField(var aDictionary : TDictionary<string, string>);
+    class procedure DictionaryClassType(var aDictionary : TDictionary<String, TTypeKind>);
 
     function ListFields(var aDictionary : TDictionary<string, variant>) : iGenericRTTI<T>;
     function TableName(var aTableName: String): iGenericRTTI<T>;
@@ -80,6 +81,30 @@ begin
         if prpRtti.IsIgnore then
           Continue;
         aDictionary.Add(prpRtti.DisplayName, prpRtti.FieldName);
+      end;
+  finally
+    ctxRtti.Free;
+  end;
+end;
+
+class procedure TGenericRTTI<T>.DictionaryClassType(
+  var aDictionary: TDictionary<String, TTypeKind>);
+var
+  ctxRtti   : TRttiContext;
+  typRtti   : TRttiType;
+  prpRtti   : TRttiProperty;
+  Info     : PTypeInfo;
+begin
+  Info := System.TypeInfo(T);
+  ctxRtti := TRttiContext.Create;
+  try
+    typRtti := ctxRtti.GetType(Info);
+    for prpRtti in typRtti.GetProperties do
+      begin
+        if prpRtti.IsIgnore then
+          Continue;
+
+        aDictionary.Add(prpRtti.FieldName, prpRtti.DataType.TypeKind);
       end;
   finally
     ctxRtti.Free;
@@ -165,7 +190,6 @@ var
   typRtti   : TRttiType;
   prpRtti   : TRttiProperty;
   Info     : PTypeInfo;
-  Aux : String;
 begin
   Result := Self;
   Info := System.TypeInfo(T);

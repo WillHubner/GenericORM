@@ -28,7 +28,19 @@ package GenericORM;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  dbrtl,
+  inet,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  RESTComponents,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  FireDACIBDriver,
+  FireDACMySQLDriver,
+  FireDACSqliteDriver;
 
 contains
   GenericAttributes in 'GenericAttributes.pas',
@@ -45,4 +57,5 @@ contains
   GenericTypes in 'GenericTypes.pas';
 
 end.
+
 
